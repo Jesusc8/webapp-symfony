@@ -2,9 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Comment;
-use App\Entity\Snippet;
-use App\Entity\User;
+
 use App\Factory\CommentFactory;
 use App\Factory\SnippetFactory;
 use App\Factory\UserFactory;
