@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Snippet;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Pagerfanta\Doctrine\ORM\QueryAdapter;
+use Pagerfanta\Pagerfanta;
 
 /**
  * @extends ServiceEntityRepository<Snippet>
@@ -17,14 +19,18 @@ class SnippetRepository extends ServiceEntityRepository
     }
 
 
-    public function getSnippets(): array
+    public function getSnippets(): Pagerfanta
     {
         $qb = $this->createQueryBuilder('snippet')
             ->leftJoin('snippet.comments','comments')->addSelect('comments')
             ->leftJoin('snippet.author', 'author')->addSelect('author')
             ->orderBy('snippet.id', 'DESC');
 
-        return $qb->getQuery()->getResult();
+        $pagerfanta = new Pagerfanta(
+            new QueryAdapter($qb)
+        );
+
+        return $pagerfanta;
     }
 
 //    /**
