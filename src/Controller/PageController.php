@@ -17,7 +17,7 @@ class PageController extends AbstractController
         SnippetRepository $snippetRepository
     ):Response
     {
-        $snippets = $snippetRepository->findAll();
+        $snippets = $snippetRepository->getSnippets();
 
         return $this->render('pages/home.html.twig', [
             'title' => 'Home Page.',
