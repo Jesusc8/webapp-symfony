@@ -23,9 +23,11 @@
                         </button>
                     </form>
 
-                    <!-- if -->
-
-                    <!-- endif -->
+                    {% if snippet.author.id == app.user.id %}
+                        <a href="{{ path('app_snippet_edit', { id: snippet.id }) }}" class="rounded-2xl py-1 px-4 bg-blue-800 text-xs text-white">
+                            Editar
+                        </a>
+                    {% endif %}
                 </div>
             {% endif %}
 
