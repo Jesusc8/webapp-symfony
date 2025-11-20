@@ -1,0 +1,12 @@
+{% if app.user %}
+<form action="{{ path('app_comment_new', { id: snippet.id }) }} " method="POST">
+    <div class="mb-4">
+        <label class="block text-sm font-semibold mb-1">Comentar</label>
+        <textarea name="content" class="block w-full rounded-md bg-white px-4 py-2 text-gray-900" rows="2"></textarea>
+    </div>
+
+    <div class="mt-4">
+        <button type="submit" class="block w-full rounded-md bg-indigo-600 px-4 py-2 text-center text-sm font-semibold text-white shadow-xs hover:bg-indigo-500">Publicar</button>
+    </div>
+</form>
+{% endif %}
