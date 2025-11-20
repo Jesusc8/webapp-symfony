@@ -113,4 +113,20 @@ final class SnippetController extends AbstractController
 
     }
 
+    #[Route('/snippet/{id}/delete', name: 'app_snippet_delete', methods:['POST'])]
+    public function deleteSnippet(
+        EntityManagerInterface $entityManager,
+        Snippet $snippet
+    )
+    {
+        if (!$this->isGranted('ROLE_ADMIN')){
+            throw $this->createAccessDeniedException('You do not have permission to delete this snippet.');
+        }
+
+        $entityManager->remove($snippet);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('home');
+    }
+
 }

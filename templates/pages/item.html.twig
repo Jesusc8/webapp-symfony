@@ -28,6 +28,14 @@
                             Editar
                         </a>
                     {% endif %}
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <form action="{{ path('app_snippet_delete', { id: snippet.id }) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este snippet?');">
+                        <button type="submit" class="rounded-2xl py-1 px-4 bg-red-800 text-xs text-white">
+                            Eliminar
+                        </button>
+                    </form>
+                    {% endif %}
                 </div>
             {% endif %}
 
